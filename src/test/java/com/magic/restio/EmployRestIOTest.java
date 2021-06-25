@@ -99,4 +99,23 @@ public class EmployRestIOTest {
         Assertions.assertEquals(4, entries);
     }
 
+    @Test
+    public void givenEmployeeToDelete_WhenDeleted_ShouldMatch200ResponseAndCount() {
+        EmployService employService;
+        Employee[] employees = getEmployeeList();
+        employService = new EmployService(Arrays.asList(employees));
+
+        Employee employee = employService.getEmployee("Shubham");
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", "application/json");
+        Response response = request.delete("/employee/" + employee.id);
+        int statusCode = response.getStatusCode();
+        Assertions.assertEquals(200, statusCode);
+
+        employService.deleteEmployee(employee.name);
+        long entries = employService.countEntries();
+        Assertions.assertEquals(1, entries);
+    }
+
+
 }

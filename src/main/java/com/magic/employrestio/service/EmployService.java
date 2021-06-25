@@ -23,6 +23,10 @@ public class EmployService {
             employee.salary = salary;
     }
 
+    public void deleteEmployee(String name) {
+        this.employeeList.remove(this.getEmployee(name));
+    }
+
     public Employee getEmployee(String name) {
         return this.employeeList.stream()
                 .filter(employee -> employee.name.equals(name))
