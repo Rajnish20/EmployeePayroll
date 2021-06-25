@@ -12,5 +12,8 @@ public class EmployService {
     public EmployService(List<Employee> employeeList) {
         this.employeeList = new ArrayList<>(employeeList);
     }
-    
+
+    public long countEntries() {
+        return this.employeeList.size();
+    }
 }

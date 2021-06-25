@@ -34,4 +34,13 @@ public class EmployRestIOTest {
         return request.post("/employee");
     }
 
+    @Test
+    public void givenEmployeeDataInJsonServer_WhenRetrieved_ShouldMatchTheCount() {
+        Employee[] employees = getEmployeeList();
+        EmployService employService;
+        employService = new EmployService(Arrays.asList(employees));
+        long entries = employService.countEntries();
+        Assertions.assertEquals(1, entries);
+    }
+
 }
