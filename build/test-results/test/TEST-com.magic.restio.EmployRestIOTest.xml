@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.magic.restio.EmployRestIOTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-06-25T09:04:21" hostname="DESKTOP-38KI29F" time="2.462">
+  <properties/>
+  <testcase name="givenMultipleEmployee_WhenAdded_ShouldMatch201ResponseAndCount()" classname="com.magic.restio.EmployRestIOTest" time="2.462"/>
+  <system-out><![CDATA[[
+  {
+    "id": 1,
+    "name": "Vivaan",
+    "salary": 100000,
+    "gender": "M"
+  }
+]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
