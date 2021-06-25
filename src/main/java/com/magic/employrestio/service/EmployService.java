@@ -13,6 +13,10 @@ public class EmployService {
         this.employeeList = new ArrayList<>(employeeList);
     }
 
+    public void addEmployeeToList(Employee employee) {
+        this.employeeList.add(employee);
+    }
+
     public long countEntries() {
         return this.employeeList.size();
     }
