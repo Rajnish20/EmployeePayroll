@@ -17,6 +17,19 @@ public class EmployService {
         this.employeeList.add(employee);
     }
 
+    public void updateEmployeeSalary(String name, double salary) {
+        Employee employee = this.getEmployee(name);
+        if (employee != null)
+            employee.salary = salary;
+    }
+
+    public Employee getEmployee(String name) {
+        return this.employeeList.stream()
+                .filter(employee -> employee.name.equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+
     public long countEntries() {
         return this.employeeList.size();
     }

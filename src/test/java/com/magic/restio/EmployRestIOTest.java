@@ -60,4 +60,21 @@ public class EmployRestIOTest {
 
     }
 
+    @Test
+    public void givenNewSalary_WhenUpdated_ShouldMatch200Response() {
+        EmployService employService;
+        Employee[] employees = getEmployeeList();
+        employService = new EmployService(Arrays.asList(employees));
+        employService.updateEmployeeSalary("Shubham", 45000.00);
+        Employee employee = employService.getEmployee("Shubham");
+
+        String empJson = new Gson().toJson(employee);
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", "application/json");
+        request.body(empJson);
+        Response response = request.put("/employee/" + employee.id);
+        int statusCode = response.getStatusCode();
+        Assertions.assertEquals(200, statusCode);
+    }
+
 }
