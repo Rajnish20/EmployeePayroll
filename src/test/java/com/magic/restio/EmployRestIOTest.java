@@ -77,4 +77,26 @@ public class EmployRestIOTest {
         Assertions.assertEquals(200, statusCode);
     }
 
+    @Test
+    public void givenMultipleEmployee_WhenAdded_ShouldMatch201ResponseAndCount() {
+        EmployService employService;
+        Employee[] employees = getEmployeeList();
+        employService = new EmployService(Arrays.asList(employees));
+        Employee[] employees1 = {
+                new Employee(0, "Mike", 77000.00, "M"),
+                new Employee(0, "Bella", 50000.00, "F"),
+                new Employee(0, "Alex", 25000.00, "F")
+        };
+        Arrays.stream(employees1).forEach(employee -> {
+            Response response = addEmployeeToJsonServer(employee);
+            int statusCode = response.getStatusCode();
+            Assertions.assertEquals(201, statusCode);
+
+            employee = new Gson().fromJson(response.asString(), Employee.class);
+            employService.addEmployeeToList(employee);
+        });
+        long entries = employService.countEntries();
+        Assertions.assertEquals(4, entries);
+    }
+
 }
